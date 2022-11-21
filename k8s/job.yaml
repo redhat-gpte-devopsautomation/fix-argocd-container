@@ -1,0 +1,32 @@
+---
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: fix-argocd
+  namespace: openshift-gitops
+spec:
+  backoffLimit: 6
+  completionMode: NonIndexed
+  completions: 1
+  parallelism: 1
+  selector:
+    matchLabels:
+      job-name: fix-argocd
+  suspend: false
+  template:
+    metadata:
+      labels:
+        job-name: fix-argocd
+    spec:
+      serviceAccountName: fix-argocd
+      containers:
+      - image: quay.io/gpte-devops-automation/fix-argocd:v1.0.0
+        imagePullPolicy: Always
+        name: fix-argocd
+        env:
+        - name: SETUP_DELAY
+          value: "2"
+        resources: {}
+      dnsPolicy: ClusterFirst
+      restartPolicy: Never
+      terminationGracePeriodSeconds: 30
