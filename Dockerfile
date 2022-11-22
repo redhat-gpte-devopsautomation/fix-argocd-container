@@ -15,6 +15,6 @@ RUN dnf -y update && \
     tar -C /usr/bin -zxvf /tmp/oc.tar.gz && \
     rm /tmp/oc.tar.gz
 
-USER deployer
+USER 1001
 
 CMD ["/usr/bin/fix-argocd.sh"]
