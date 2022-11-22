@@ -20,6 +20,11 @@ echo "Deleting all argocd-dex-server pods on the cluster..."
 echo "-----------------------------------------------------"
 oc delete pod -A -l app.kubernetes.io/name=argocd-dex-server
 
+echo "-------------------------------------------------"
+echo "Deleting all argocd-server pods on the cluster..."
+echo "-------------------------------------------------"
+oc delete pod -A -l app.kubernetes.io/name=argocd-server
+
 echo "---------------------------------------------"
 echo "Deleting openshift-gitops-repos-server pod..."
 echo "---------------------------------------------"
